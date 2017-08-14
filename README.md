@@ -17,3 +17,10 @@ A brute force approach to generating passphrases using Python
 # What is needed:
         A way to generate all of the possible passphrases that they might have accidentally 
         used instead of the above passphrase.
+        
+        
+# HINTS:
+
+        My approach is to use the passphrase provided as an example and permute/combine characters provided to generate
+        all possible passphrases. I wanted to try using multiprocessing module to speed up the string generation, but it
+        may be overkill.
