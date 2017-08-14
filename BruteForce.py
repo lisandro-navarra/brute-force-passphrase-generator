@@ -77,8 +77,10 @@ def brute_enforcer(myPool):
 
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser(description='This script evaluates a passphrase and generate all possible passphrases.')
-    parser.add_argument('-p', '--passphrase', help='Provide test passphrase for permutation calculation', required=False)
+    parser = argparse.ArgumentParser(description='This script evaluates a passphrase '
+                                                 'and generates all possible passphrases.')
+    parser.add_argument('-p', '--passphrase', help='Provide test passphrase for '
+                                                   'permutation calculation', required=False)
     parser.add_argument('-l', '--maxlength', help='Provide max length of passphrase to generate', required=True)
     args = parser.parse_args()
 
