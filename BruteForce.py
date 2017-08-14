@@ -7,7 +7,7 @@ from itertools import product,permutations
 def p_worker(string_list):
     p_done = 0
     for s in permutations(string_list):
-        result = "".join(s)
+        print "".join(s)
         p_done += 1
     return p_done
 
@@ -16,11 +16,11 @@ def c_worker(prefix,suffix_len,length):
     c_done = 0
     if length <= suffix_len:
         for t in product(CHARSET, repeat=length):
-            result = "".join(t)
+            print "".join(t)
             c_done += 1
     else:
         for t in product(CHARSET, repeat=suffix_len):
-            result = prefix + "".join(t)
+            print prefix + "".join(t)
             c_done += 1
 
     return c_done
@@ -56,23 +56,23 @@ def brute_enforcer(myPool):
             if len(w2) > 1:
                 words.append(w2)
 
-        myPool.map_async(p_worker,words,callback=perms_done)
+        myPool.map_async(p_worker, words, callback=perms_done)
 
     suffix_len = 0
 
-    while len(CHARSET)**suffix_len <= CALC_LIMIT:
+    while len(CHARSET) ** suffix_len <= CALC_LIMIT:
         suffix_len += 1
 
     suffix_len -= 1
 
-    short_string_thresh = min(suffix_len,MAX_LENGTH)+1
+    short_string_thresh = min(suffix_len, MAX_LENGTH)+1
     for length in xrange(1, short_string_thresh):
-        myPool.apply_async(c_worker,args=("",suffix_len,length),callback=combos_done)
+        myPool.apply_async(c_worker, args=("", suffix_len, length), callback=combos_done)
 
     for length in xrange(short_string_thresh,MAX_LENGTH + 1):
         for t in product(CHARSET, repeat=length-suffix_len):
             prefix = "".join(t)
-            myPool.apply_async(c_worker,args=(prefix,suffix_len,length),callback=combos_done)
+            myPool.apply_async(c_worker, args=(prefix, suffix_len, length), callback=combos_done)
 
 
 if __name__ == "__main__":
