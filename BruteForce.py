@@ -7,7 +7,7 @@ from itertools import product,permutations
 def p_worker(string_list):
     p_done = 0
     for s in permutations(string_list):
-        print "".join(s)
+        #print "".join(s)
         p_done += 1
     return p_done
 
@@ -16,11 +16,11 @@ def c_worker(prefix,suffix_len,length):
     c_done = 0
     if length <= suffix_len:
         for t in product(CHARSET, repeat=length):
-            print "".join(t)
+            #print "".join(t)
             c_done += 1
     else:
         for t in product(CHARSET, repeat=suffix_len):
-            print prefix + "".join(t)
+            #print prefix + "".join(t)
             c_done += 1
 
     return c_done
@@ -48,8 +48,8 @@ def brute_enforcer(myPool):
     if PASSPHRASE is not None:
         words = [PASSPHRASE]
         pass_len = len(PASSPHRASE)
-        for l in range(1,pass_len):
-            x = pass_len-l
+        for l in range(1, pass_len):
+            x = pass_len - l
             w1, w2 = PASSPHRASE[0:x], PASSPHRASE[-x:]
             if len(w1) > 1:
                 words.append(w1)
@@ -77,13 +77,13 @@ def brute_enforcer(myPool):
 
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser(description='This program should evaluate a passphrase and generate all possible phrases.')
-    parser.add_argument('-p','--passphrase', help='Provide test passphrase for permutation calculation',required=False)
-    parser.add_argument('-l','--maxlength',help='Provide max length of passphrase to generate', required=True)
+    parser = argparse.ArgumentParser(description='This script evaluates a passphrase and generate all possible passphrases.')
+    parser.add_argument('-p', '--passphrase', help='Provide test passphrase for permutation calculation', required=False)
+    parser.add_argument('-l', '--maxlength', help='Provide max length of passphrase to generate', required=True)
     args = parser.parse_args()
 
-    PASSPHRASE=args.passphrase
-    MAX_LENGTH=int(args.maxlength)
+    PASSPHRASE = args.passphrase
+    MAX_LENGTH = int(args.maxlength)
     CHARSET = string.ascii_letters + string.digits + string.punctuation
     CALC_LIMIT = 1000000
 
