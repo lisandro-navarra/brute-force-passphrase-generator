@@ -15,4 +15,5 @@ A brute force approach to generating passphrases using Python
                 fl38Cd%mr.ypJ
 
 # What is needed:
-        A way to generate all of the possible passphrases that they might have accidentally used instead of the above passphrase.
+        A way to generate all of the possible passphrases that they might have accidentally 
+        used instead of the above passphrase.
